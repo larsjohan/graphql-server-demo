@@ -1,3 +1,5 @@
+// import db2 from "database";
+const db2 = require('./database');
 const db = require('./api');
 const express = require('express');
 const expressGQL = require('express-graphql');
@@ -50,8 +52,8 @@ let getSuperHeroByHairColor = (args) => {
 
 // The root resolver object (contains the mapping of actions to functions)
 let rootResolverObj = {
-  superHeroes: () => api.getAll(),
-  superHero: args => api.getOne(args.id),
+  superHeroes: () => db2.data.findAll(),
+  superHero: args => db2.data.getOne(args.id),
   superHeroByHairColor: getSuperHeroByHairColor
 };
 

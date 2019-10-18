@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     id: {
       type: DataTypes.STRING(29),
-      allowNull: true
+      primaryKey: true
     },
     align: {
       type: DataTypes.STRING(18),
