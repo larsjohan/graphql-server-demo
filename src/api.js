@@ -17,20 +17,23 @@ function Api() {
         'Name',
         Math.random() * 85 + 15,
         Math.random() < 0.5 ? 'MALE' : 'FEMALE',
-        Math.random()*50 + 150),
-        Math.random()*50 + 50);
+        Math.random()*50 + 150,
+        Math.random()*50 + 50));
     }
   };
 
   this.add = function (hero) {
     this.db.push(hero);
-  }
+  };
 
-  this.get = function(id) {
+  this.getAll = function(id) {
     return this.db;
-  }
+  };
+
+  this.getOne = function (id) {
+    return this.db.find(o => o.id === id);
+  };
 
 
-
-
+  this.initData();
 }
