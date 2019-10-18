@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 
-var db = {}
+var db2 = {}
 
 const sequelize = new Sequelize('dev', 'test', 'test', {
     host: 'localhost',
@@ -20,26 +20,23 @@ const sequelize = new Sequelize('dev', 'test', 'test', {
 })
 
 let models = [
-    require('./models/priorities.js'),
-    require('./models/status.js'),
-    require('./models/tickets.js'),
-    require('./models/users.js'),
+    require('./models/data.js')
 ]
 
 // Initialize models
 models.forEach(model => {
     const seqModel = model(sequelize, Sequelize)
-    db[seqModel.name] = seqModel
+    db2[seqModel.name] = seqModel
 })
 
 // Apply associations
-Object.keys(db).forEach(key => {
-    if ('associate' in db[key]) {
-        db[key].associate(db)
+Object.keys(db2).forEach(key => {
+    if ('associate' in db2[key]) {
+        db2[key].associate(db2)
     }
 })
 
-db.sequelize = sequelize
-db.Sequelize = Sequelize
+db2.sequelize = sequelize
+db2.Sequelize = Sequelize
 
-module.exports = db
+module.exports = db2
