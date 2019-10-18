@@ -9,7 +9,7 @@ services:
             - 3306
         volumes:
             - ./db:/var/lib/mysql
-            - ./var/sql:/docker-entrypoint-initdb.dest
+            - ./var/sql:/docker-entrypoint-initdb.d
         healthcheck:
             test: mysqladmin ping -h localhost -u root --password=MySQLRootPassword
             timeout: 20s
