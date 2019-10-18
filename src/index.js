@@ -52,9 +52,12 @@ let getSuperHeroByHairColor = (args) => {
 
 // The root resolver object (contains the mapping of actions to functions)
 let rootResolverObj = {
+ Query: {
   superHeroes: () => db2.data.findAll(),
-  superHero: args => db2.data.getOne(args.id),
-  superHeroByHairColor: getSuperHeroByHairColor
+  superHero: args => db2.data.getOne(args.id)},
+  SuperHero:{
+   name: async (args.id) => db2.name.findByPk()
+  }
 };
 
 const app = express();
