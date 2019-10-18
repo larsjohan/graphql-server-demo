@@ -56,7 +56,7 @@ let rootResolverObj = {
   superHeroes: () => db2.data.findAll(),
   superHero: args => db2.data.getOne(args.id)},
   SuperHero:{
-   name: async (args.id) => db2.name.findByPk()
+   name: async (args) => db2.name.findByPk(args.id)
   }
 };
 
