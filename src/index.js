@@ -9,7 +9,7 @@ const api = new db.Api();
 // The GraphQL schema which should be attached to the specific endpoint
 let schema = buildSchema(`
     type Query {
-        superHero(id: Int!): SuperHero
+        superHero(id: String!): SuperHero
         superHeroes: [SuperHero]
         superHeroByHairColor(color: String!): [SuperHero]
     },
