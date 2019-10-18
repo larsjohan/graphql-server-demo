@@ -9,6 +9,7 @@ let schema = buildSchema(`
     type Query {
         superHero(id: Int!): SuperHero
         superHeroes: [SuperHero]
+        superHeroByHairColor(color: String!): [SuperHero]
     },
     type SuperHero {
         pageid: Int
@@ -27,10 +28,31 @@ let schema = buildSchema(`
     }
 `);
 
+// query getSuperHeroByHairColor($color: String!) {
+//   superHeroByHairColor(color: $color) {
+//     name
+//     EYE
+//     HAIR
+//     SEX
+//   }
+// }
+
+// {
+//   "color":"Brown Hair"
+// }
+
+//
+// Endpoint functions
+let getSuperHeroByHairColor = (args) => {
+  let hairColor = args.color;
+  return api.getAll().filter((hero) => hero.hair === hairColor)
+};
+
 // The root resolver object (contains the mapping of actions to functions)
 let rootResolverObj = {
   superHeroes: () => api.getAll(),
-  superHero: args => api.getOne(args.id)
+  superHero: args => api.getOne(args.id),
+  superHeroByHairColor: getSuperHeroByHairColor
 };
 
 const app = express();

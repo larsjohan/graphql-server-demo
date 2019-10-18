@@ -38,8 +38,8 @@ function Api() {
         hero.SEX,
         hero.GSM,
         hero.ALIVE,
-        hero.APPEARANCE,
-        hero.FIRST_APPEARANCE,
+        hero.APPEARANCES | 0,
+        hero.FIRSTAPPEARANCE,
         hero.Year | 0)
       );
     }
