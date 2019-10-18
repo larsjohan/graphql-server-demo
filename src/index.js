@@ -9,19 +9,19 @@ let schema = buildSchema(`
     type Query {
         superHeroByHairColor(color: String!): [SuperHero]
     },
-    type SuperHero: {
-        page_id: Int,
-        name: String,
-        urlslug: String,
-        ID: String,
-        ALIGN: String,
-        EYE: String,
-        HAIR: String,
-        SEX: String,
-        GSM: String,
-        ALIVE: String,
-        APPEARANCES: Int,
-        FIRST APPEARANCE: String,
+    type SuperHero {
+        page_id: Int
+        name: String
+        urlslug: String
+        ID: String
+        ALIGN: String
+        EYE: String
+        HAIR: String
+        SEX: String
+        GSM: String
+        ALIVE: String
+        APPEARANCES: Int
+        FIRST_APPEARANCE: String
         Year: Int
     }
 `);

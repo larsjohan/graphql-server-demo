@@ -1,5 +1,5 @@
 function Hero(id, name, age, gender, height, weight) {
-  this.id = id;
+  this.ID = id;
   this.name = name;
   this.age = age;
   this.gender = gender;
