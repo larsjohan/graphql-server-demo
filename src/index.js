@@ -26,9 +26,29 @@ let schema = buildSchema(`
     }
 `);
 
+// query getSuperHeroByHairColor($color: String!) {
+//   superHeroByHairColor(color: $color) {
+//     name
+//     EYE
+//     HAIR
+//     SEX
+//   }
+// }
+
+// {
+//   "color":"Brown Hair"
+// }
+
+//
+// Endpoint functions
+let getSuperHeroByHairColor = (args) => {
+  let hairColor = args.color;
+  return superHeroes.filter((hero) => hero.HAIR === hairColor)
+};
+
 // The root resolver object (contains the mapping of actions to functions)
 let rootResolverObj = {
-  // getSuperHeroByHairColor: (color) => superHeroes.map((hero) => hero.HAIR === color)
+  superHeroByHairColor: getSuperHeroByHairColor
 };
 
 const app = express();
