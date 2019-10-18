@@ -1,34 +1,36 @@
+const db = require('./api');
 const express = require('express');
 const expressGQL = require('express-graphql');
 const { buildSchema } = require('graphql');
-
-let superHeroes = require('../var/data/marvel-wikia-data');
+const api = new db.Api();
 
 // The GraphQL schema which should be attached to the specific endpoint
 let schema = buildSchema(`
     type Query {
-        superHeroByHairColor(color: String!): [SuperHero]
+        superHero(id: Int!): SuperHero
+        superHeroes: [SuperHero]
     },
     type SuperHero {
-        page_id: Int
+        pageid: Int
         name: String
         urlslug: String
-        ID: String
-        ALIGN: String
-        EYE: String
-        HAIR: String
-        SEX: String
-        GSM: String
-        ALIVE: String
-        APPEARANCES: Int
-        FIRST_APPEARANCE: String
-        Year: Int
+        id: String
+        align: String
+        eye: String
+        hair: String
+        sex: String
+        gsm: String
+        alive: String
+        appearances: Int
+        firstappearance: String
+        year: Int
     }
 `);
 
 // The root resolver object (contains the mapping of actions to functions)
 let rootResolverObj = {
-  getSuperHeroByHairColor: (color) => superHeroes.map((hero) => hero.HAIR === color)
+  superHeroes: () => api.getAll(),
+  superHero: args => api.getOne(args.id)
 };
 
 const app = express();
